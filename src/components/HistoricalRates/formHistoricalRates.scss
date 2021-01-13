@@ -1,0 +1,55 @@
+.historical-rate-base{
+  padding: 3px 10px;
+}
+.title-historical-rate{
+  font-weight: bold;
+}
+.exchange-rate-date-content{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form-historical-rate{
+  position: relative;
+}
+.exchange-rate-date-content .from-group .form-control{
+  padding: 0 0 0 5px;
+  margin: 10px 0;
+  transform: scale(1);
+  transition: all .4s;
+  background-color: rgb(214, 214, 206);
+  border: 0;
+  border-bottom: 1px solid #000;
+  border-radius: 0;
+  font-size: 14px;
+  width: 250px;
+  &:focus{
+    transform: scale(1.1);
+    border: 0;
+    border-bottom: 1px solid #000;
+    box-shadow: none;
+    background-color: rgb(214, 214, 206);
+  }
+}
+.add-action .btn{
+  position: absolute;
+  padding: 10px 20px;
+  top: 7px;
+  left: 240px;
+  font-size: 35px;
+  transition: all ease-out .1s;
+  &:hover{
+    transition: all ease-in .1s;
+    font-size: 38px;
+    top: 2px;
+  }
+}
+.loader{
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+}
+
+
+

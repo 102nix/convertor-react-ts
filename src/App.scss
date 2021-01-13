@@ -1,0 +1,25 @@
+body{
+  background-color: rgb(237, 243, 241);
+  padding: 0;
+  margin: 0;
+}
+.App{
+  max-width: 1024px;
+  height: auto;
+  margin: 0 auto;
+}
+.col-12, .col-lg-4, .col-lg-8{
+  padding: 0;
+}
+.content{
+  width: 100%;
+  height: 100vh;
+  padding: 5px 10px;
+  background-color: rgb(214, 214, 206);
+  overflow: auto;
+}
+img{
+  max-width: 100%;
+  height: auto;
+}
+

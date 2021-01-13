@@ -1,0 +1,66 @@
+.rate{
+  height: auto;
+  padding: 3px 10px;
+}
+.rate .row{
+  margin-bottom: 15px;
+}
+.title{
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.card-flip > div {
+  backface-visibility: hidden;
+  transition: transform 450ms;
+  transition-timing-function: linear;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  display: flex;
+}
+.card-title{
+  font-size: 15px;
+}
+.card-front {
+  transform: rotateY(0deg);
+  text-align: center;
+}
+.card{
+  cursor: pointer;
+}
+.card-back {
+  transform: rotateY(180deg);
+  position: absolute;
+  top: 0;
+  height: auto;
+  font-size: 12px;
+}
+.card-flip:hover .card-front {
+  transform: rotateY(-180deg);
+}
+.card-flip:hover .card-back {
+  transform: rotateY(0deg);
+}
+.card-back .card-body a{
+  margin-top: 35px;
+}
+.bg-succ{
+  background-color: rgb(108, 202, 158);
+}
+.bg-warn{
+  background-color: rgb(219, 217, 97);
+}
+.bg-prim{
+  background-color: rgb(109, 168, 247);
+}
+@media(max-width: 1024px){
+  .rate .row .col-12{
+    font-weight: normal;
+  }
+}
+@media(max-width: 414px){
+  .card{
+    width: 80%;
+    margin: 0 auto;
+  }
+}

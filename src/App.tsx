@@ -1,26 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import NavbarComponent from './components/NavbarComponent/NavbarComponent';
+import Rate from './components/Rate/Rate';
+import About from './components/About/About';
+import HistoricalRates from './components/HistoricalRates/HistoricalRates'
+import { Route, Switch } from 'react-router-dom';
+
 
 function App() {
-  return (
+  return(
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="container">
+        <div className="row text-center">
+          <div className="col-12 col-lg-4">
+            <NavbarComponent />
+          </div>
+          <div className="col-12 col-lg-8">
+            <div className="content">
+              <Switch>
+                <Route exact path="/" render={() => <Rate /> } />
+                <Route path="/about" render={() => <About /> } />
+                <Route path="/historical-rate" render={() => <HistoricalRates /> } />
+              </Switch>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
-  );
+  )
 }
 
 export default App;
