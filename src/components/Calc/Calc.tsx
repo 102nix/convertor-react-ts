@@ -1,26 +1,19 @@
-import React, { useEffect } from 'react'
-import './Calc.scss'
+import React, { useEffect, useRef } from 'react' 
 import { connect } from 'react-redux'
-import { onGetDynamicsRate, changeCountRUB, IObject } from '../../redux/convertorReducer'
+import { getDynamicRateSaga } from '../../redux/convertorAC'
+import { changeCountRUB } from '../../redux/convertorAC'
+import './Calc.scss'
+//types: 
 import { AppStateType } from '../../redux/store'
+import { CalcDispachPropsType, CalcStatePropsType } from '../../types/componentTypes'
 
-type DispachProps = {
-  onGetDynamicsRate(partOfURL: string): void
-  changeCountRUB(val: number): void
-}
-type MapProps = {
-  currentRUB: number 
-  startValueForInput: number
-  countRUB: number
-  currencyList: IObject
-}
+const Calc: React.FC<CalcStatePropsType & CalcDispachPropsType> = props => {
 
-const Calc: React.FC<DispachProps & MapProps> = props => {
-
-  let inputRef = React.createRef<HTMLInputElement>()
+  // let inputRef = React.createRef<HTMLInputElement>()
+  let inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    props.onGetDynamicsRate(Object.keys(props.currencyList)[0])
+    props.getDynamicRateSaga(Object.keys(props.currencyList)[0])
   },[props.currencyList])
 
   const handlerInput = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,11 +24,10 @@ const Calc: React.FC<DispachProps & MapProps> = props => {
   }
 
   const handlerSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    console.log(event.target.value)
     props.changeCountRUB(0)
     inputRef.current!.value = '1'
     console.log(inputRef.current?.value)
-    props.onGetDynamicsRate(event.target.value)
+    props.getDynamicRateSaga(event.target.value)
   }
 
   return (
@@ -53,11 +45,7 @@ const Calc: React.FC<DispachProps & MapProps> = props => {
             { 
               Object.keys(props.currencyList)
                 .filter(key => key !== 'RUB')
-                  .map(option => {
-                    return (
-                    <option value={option} key={option}>{option}</option>
-                    )
-                  })
+                  .map(option => <option value={option} key={option}>{option}</option>)
             }
           </select>
         </div>
@@ -68,7 +56,7 @@ const Calc: React.FC<DispachProps & MapProps> = props => {
     </div>
   )
 }
-let mapStateToProps = (state: AppStateType): MapProps => {
+let mapStateToProps = (state: AppStateType): CalcStatePropsType => {
   return {
     currencyList: state.convertorReducer.currencyList,
     currentRUB: state.convertorReducer.currentRUB,
@@ -76,5 +64,5 @@ let mapStateToProps = (state: AppStateType): MapProps => {
     countRUB: state.convertorReducer.countRUB
   }
 }
-const connector = connect(mapStateToProps, { onGetDynamicsRate, changeCountRUB })
+const connector = connect(mapStateToProps, { getDynamicRateSaga, changeCountRUB })
 export default connector(Calc)

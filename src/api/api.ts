@@ -7,22 +7,22 @@ const API_URL_EUR = 'https://api.exchangeratesapi.io/latest?base=EUR'
 
 export const ConvertorAPI = {
   getRate () {
-    return axios.get<Object>(API_URL)
+    return axios.get<any>(API_URL)
   },
   getRateRub () {
-    return axios.get<Object>(API_URL_RUB)
+    return axios.get<any>(API_URL_RUB)
   },
   getRateUsd () {
-    return axios.get<Object>(API_URL_USD)
+    return axios.get<any>(API_URL_USD)
   },
   getRateEur () {
-    return axios.get<Object>(API_URL_EUR)
+    return axios.get<any>(API_URL_EUR)
   },
   getDynamicsRate(patOfURL: string) {
-    return axios.get<Object>(`https://api.exchangeratesapi.io/latest?base=${patOfURL}`)
+    return axios.get<any>(`https://api.exchangeratesapi.io/latest?base=${patOfURL}`)
   },
   getHistoricalRate(valueHistoricalRate: string) {
-    return axios.get<Object>(`https://api.exchangeratesapi.io/${valueHistoricalRate}?base=RUB`)
+    return axios.get<any>(`https://api.exchangeratesapi.io/${valueHistoricalRate}?base=RUB`)
   }
 }
 

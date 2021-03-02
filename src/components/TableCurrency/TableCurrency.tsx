@@ -1,11 +1,9 @@
 import React from 'react'
 import './TableCurrency.scss';
+//types:
+import { TableCurrencyContainerPropsType } from '../../types/componentTypes';
 
-type ContainerPropsType = {
-  currencyListBaseRub: { [key: string]: number }
-}
-
-const TableCurrency: React.FC<ContainerPropsType> = props => {
+const TableCurrency: React.FC<TableCurrencyContainerPropsType> = props => {
   
   const arrayCurrencyValue: {[key: string]: string} = {
      'CAD': 'Канадский доллар',

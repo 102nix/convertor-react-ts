@@ -1,29 +1,21 @@
 import React, { useEffect } from 'react'
-import './Rate.scss'
 import { connect } from 'react-redux'
-import { onGetRate, IObject } from '../../redux/convertorReducer'
-import { AppStateType } from '../../redux/store'
-import { Html5Entities } from 'html-entities';
+import { Html5Entities } from 'html-entities'
+import './Rate.scss'
+import { setRateSaga } from '../../redux/convertorAC'
+//components:
 import Calc from '../Calc/Calc'
 import TableCurrency from '../TableCurrency/TableCurrency'
+//types:
+import { AppStateType } from '../../redux/store'
+import { RateDispatchPropsType, RateStatePropsType } from '../../types/componentTypes'
 
-type MapProps = {
-  dateFromAPIRequest: string
-  currencyUsdEurForRub: IObject
-  baseCurrencyFromAPIRequest: string
-  currencyListBaseRub: IObject
-}
-type DispatchProps = {
-  onGetRate(): void
-}
-type Props = MapProps & DispatchProps
+const Rate: React.FC<RateStatePropsType & RateDispatchPropsType> = props => {
 
-const Rate: React.FC<Props> = props => {
-
-  const htmlEntities = new Html5Entities();
+  const htmlEntities = new Html5Entities() 
 
   useEffect(() => {
-    props.onGetRate()
+    props.setRateSaga()
   }, [])
 
   return (
@@ -41,19 +33,19 @@ const Rate: React.FC<Props> = props => {
               <div className="col-12 col-lg-6">
                 <div className="card card-flip h-100">
                   <div className="card-front text-white bg-dark">
-                      <div className="card-body">
-                          <i className="fa fa-search fa-5x float-right"></i>
-                          <h3 className="card-title">{htmlEntities.decode(keyName)}</h3>
-                          <div className="card-text">{props.currencyUsdEurForRub[keyName].toFixed(2)}</div>
-                      </div>
+                    <div className="card-body">
+                        <i className="fa fa-search fa-5x float-right"></i>
+                        <h3 className="card-title">{htmlEntities.decode(keyName)}</h3>
+                        <div className="card-text">{props.currencyUsdEurForRub[keyName].toFixed(2)}</div>
+                    </div>
                   </div>
                   <div className="card-back bg-dark text-white">
-                      <div className="card-body">
-                          <div className="card-text">
-                            Exchange rates API is a free service for current and historical foreign exchange 
-                            rates published by the European Central Bank
-                          </div>
-                      </div>
+                    <div className="card-body">
+                        <div className="card-text">
+                          Exchange rates API is a free service for current and historical foreign exchange 
+                          rates published by the European Central Bank
+                        </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -80,7 +72,7 @@ const Rate: React.FC<Props> = props => {
     </div>
   )
 }
-let mapStateToProps = (state: AppStateType): MapProps => {
+let mapStateToProps = (state: AppStateType): RateStatePropsType => {
   return {
     dateFromAPIRequest: state.convertorReducer.dateFromAPIRequest,
     currencyUsdEurForRub: state.convertorReducer.currencyUsdEurForRub,
@@ -89,5 +81,5 @@ let mapStateToProps = (state: AppStateType): MapProps => {
   }
 }
 
-const connector = connect(mapStateToProps, { onGetRate })
+const connector = connect(mapStateToProps, { setRateSaga })
 export default connector(Rate)

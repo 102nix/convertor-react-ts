@@ -1,23 +1,17 @@
 import React, {useEffect} from 'react'
-import './formHistoricalRates.scss'
-import Form, { FormInData } from './FormHistoricalRates'
-import { onHistoricalRate, resetHistoricalRates, setLoader } from '../../redux/convertorReducer'
-import { connect } from 'react-redux';
-import { AppStateType } from '../../redux/store';
-import TableCurrency from '../TableCurrency/TableCurrency'
+import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import './formHistoricalRates.scss'
+//components:
+import Form from './FormHistoricalRates'
+import { SetHistoricalRateSaga, resetHistoricalRates, setLoader } from '../../redux/convertorAC'
+//components:
+import TableCurrency from '../TableCurrency/TableCurrency'
+//types: 
+import { HistoricalRatesDispatcProps, HistoricalRatesPropsType, FormInData } from '../../types/componentTypes';
+import { AppStateType } from '../../redux/store';
 
-type DispatcProps = {
-  onHistoricalRate(dataForm: string): void
-  resetHistoricalRates(): void
-  setLoader(val: boolean): void
-}
-type MapProps = {
-  listHistoricalRates: null | { [key: string]: number }
-  load: boolean
-}
-
-const HistoricalRates: React.FC<DispatcProps & MapProps> = props => {
+const HistoricalRates: React.FC<HistoricalRatesPropsType & HistoricalRatesDispatcProps> = props => {
 
   useEffect(() => {
     props.resetHistoricalRates()
@@ -31,7 +25,7 @@ const HistoricalRates: React.FC<DispatcProps & MapProps> = props => {
   }
 
   const onSubmit = (dataForm: FormInData): void => {
-    props.onHistoricalRate(dataForm.exchangeRateDate)
+    props.SetHistoricalRateSaga(dataForm.exchangeRateDate)
     props.setLoader(true)
   }
   
@@ -55,11 +49,11 @@ const HistoricalRates: React.FC<DispatcProps & MapProps> = props => {
     </div>
   )
 }
-let mapStateToProps = (state: AppStateType): MapProps => {
+let mapStateToProps = (state: AppStateType): HistoricalRatesPropsType => {
   return {
     listHistoricalRates: state.convertorReducer.listHistoricalRates,
     load: state.convertorReducer.load
   }
 }
-const connector = connect(mapStateToProps, { onHistoricalRate, resetHistoricalRates, setLoader })
+const connector = connect(mapStateToProps, { SetHistoricalRateSaga, resetHistoricalRates, setLoader })
 export default connector(HistoricalRates)

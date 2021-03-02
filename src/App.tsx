@@ -1,11 +1,11 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import './App.scss';
+//Components:
 import NavbarComponent from './components/NavbarComponent/NavbarComponent';
 import Rate from './components/Rate/Rate';
 import About from './components/About/About';
 import HistoricalRates from './components/HistoricalRates/HistoricalRates'
-import { Route, Switch } from 'react-router-dom';
-
 
 function App() {
   return(
@@ -26,7 +26,6 @@ function App() {
           </div>
         </div>
       </div>
-
     </div>
   )
 }
