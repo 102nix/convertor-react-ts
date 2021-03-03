@@ -17,7 +17,7 @@ import {
   LIST_HISTORICAL_RATES, 
   RESET_HISTORICAL_RATES, 
   SET_CURRENT_RUB, 
-  SET_CURRENT_RUB_SAGA, 
+  GET_DYNAMIC_RATE_SAGA, 
   SET_LOADER, 
   SET_RATE_SAGA,
   SET_HISTORICAL_RATE_SAGA } from "./convertorReducer" 
@@ -33,5 +33,5 @@ export const SetListHistoricalRates = (listHistoricalRates: IObject):SetListHist
 export const resetHistoricalRates = (): ResetHistoricalRatesType => ({type: RESET_HISTORICAL_RATES})
 export const setLoader = (val: boolean): SetLoaderType => ({type: SET_LOADER, val})
 export const setRateSaga = (): SetRateSagaType => ({type: SET_RATE_SAGA})
-export const getDynamicRateSaga = (pateOfURL: string): getDynamicRateSagaType => ({type: SET_CURRENT_RUB_SAGA, pateOfURL})
-export const SetHistoricalRateSaga = (valueHistoricalRate: string): SetHistoricalRateSagaType => ({type: SET_HISTORICAL_RATE_SAGA, valueHistoricalRate})
+export const getDynamicRateSaga = (pateOfURL: string): getDynamicRateSagaType => ({type: GET_DYNAMIC_RATE_SAGA, pateOfURL})
+export const setHistoricalRateSaga = (valueHistoricalRate: string): SetHistoricalRateSagaType => ({type: SET_HISTORICAL_RATE_SAGA, valueHistoricalRate})

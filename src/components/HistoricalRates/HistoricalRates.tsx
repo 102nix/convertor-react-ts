@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import './formHistoricalRates.scss'
 //components:
 import Form from './FormHistoricalRates'
-import { SetHistoricalRateSaga, resetHistoricalRates, setLoader } from '../../redux/convertorAC'
+import { setHistoricalRateSaga, resetHistoricalRates, setLoader } from '../../redux/convertorAC'
 //components:
 import TableCurrency from '../TableCurrency/TableCurrency'
 //types: 
@@ -21,11 +21,11 @@ const HistoricalRates: React.FC<HistoricalRatesPropsType & HistoricalRatesDispat
 
   const resetExchangeRateDate = () => {
     props.resetHistoricalRates()
-    history.push('/')
+    history.push('/') 
   }
 
   const onSubmit = (dataForm: FormInData): void => {
-    props.SetHistoricalRateSaga(dataForm.exchangeRateDate)
+    props.setHistoricalRateSaga(dataForm.exchangeRateDate)
     props.setLoader(true)
   }
   
@@ -49,11 +49,12 @@ const HistoricalRates: React.FC<HistoricalRatesPropsType & HistoricalRatesDispat
     </div>
   )
 }
-let mapStateToProps = (state: AppStateType): HistoricalRatesPropsType => {
+
+const mapStateToProps = (state: AppStateType): HistoricalRatesPropsType => {
   return {
     listHistoricalRates: state.convertorReducer.listHistoricalRates,
     load: state.convertorReducer.load
   }
 }
-const connector = connect(mapStateToProps, { SetHistoricalRateSaga, resetHistoricalRates, setLoader })
+const connector = connect(mapStateToProps, { setHistoricalRateSaga, resetHistoricalRates, setLoader })
 export default connector(HistoricalRates)

@@ -31,7 +31,7 @@ export type HistoricalRatesPropsType = {
   load: boolean
 }
 export type HistoricalRatesDispatcProps = {
-  SetHistoricalRateSaga(dataForm: string): void
+  setHistoricalRateSaga(dataForm: string): void
   resetHistoricalRates(): void
   setLoader(val: boolean): void
 }

@@ -5,7 +5,7 @@ import {
   LIST_HISTORICAL_RATES, 
   RESET_HISTORICAL_RATES, 
   SET_CURRENT_RUB, 
-  SET_CURRENT_RUB_SAGA, 
+  GET_DYNAMIC_RATE_SAGA, 
   SET_HISTORICAL_RATE_SAGA, 
   SET_LOADER, 
   SET_RATE_SAGA 
@@ -46,7 +46,7 @@ export type SetRateSagaType = {
   type: typeof SET_RATE_SAGA
 }
 export type getDynamicRateSagaType = {
-  type: typeof SET_CURRENT_RUB_SAGA
+  type: typeof GET_DYNAMIC_RATE_SAGA
   pateOfURL: string
 }
 export type SetHistoricalRateSagaType = {

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react' 
 import { connect } from 'react-redux'
-import { getDynamicRateSaga } from '../../redux/convertorAC'
-import { changeCountRUB } from '../../redux/convertorAC'
+import { getDynamicRateSaga, changeCountRUB } from '../../redux/convertorAC'
 import './Calc.scss'
 //types: 
 import { AppStateType } from '../../redux/store'
