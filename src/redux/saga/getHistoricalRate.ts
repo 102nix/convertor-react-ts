@@ -1,10 +1,10 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import { ConvertorAPI } from '../../api/api'
+import { getHistoricalRateAction } from '../../types/sagaInterfaces'
 import { SetListHistoricalRates, setLoader } from '../convertorAC'
 import { SET_HISTORICAL_RATE_SAGA } from '../convertorReducer'
 
-
-function* fetchHistoricalRate (action) {
+function* fetchHistoricalRate (action: getHistoricalRateAction) { 
   try {
     const response = yield call (ConvertorAPI.getHistoricalRate, action.valueHistoricalRate)
     yield put (SetListHistoricalRates(response.data.rates))

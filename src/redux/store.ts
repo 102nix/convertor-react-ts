@@ -3,7 +3,7 @@ import convertorReducer from './convertorReducer';
 import thunkMiddleware from 'redux-thunk';
 import {reducer as formReducer} from 'redux-form'
 import createSagaMiddleware from 'redux-saga'
-import { rootWatcher } from './saga/index';
+import { rootWatcher } from './saga/index'
 
 const sagaMiddleware = createSagaMiddleware()
 
