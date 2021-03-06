@@ -8,10 +8,10 @@ import { setHistoricalRateSaga, resetHistoricalRates, setLoader } from '../../re
 //components:
 import TableCurrency from '../TableCurrency/TableCurrency'
 //types: 
-import { HistoricalRatesDispatcProps, HistoricalRatesPropsType, FormInData } from '../../types/componentTypes';
-import { AppStateType } from '../../redux/store';
+import { AppStateType } from '../../redux/store'
+import { HistoricalRatesType, HistoricalRatesPropsType, HistoricalFormDataType } from '../../types/HistoricalRateTypes'
 
-const HistoricalRates: React.FC<HistoricalRatesPropsType & HistoricalRatesDispatcProps> = props => {
+const HistoricalRates: React.FC<HistoricalRatesType> = props => {
 
   useEffect(() => {
     props.resetHistoricalRates()
@@ -24,7 +24,7 @@ const HistoricalRates: React.FC<HistoricalRatesPropsType & HistoricalRatesDispat
     history.push('/') 
   }
 
-  const onSubmit = (dataForm: FormInData): void => {
+  const onSubmit = (dataForm: HistoricalFormDataType): void => {
     props.setHistoricalRateSaga(dataForm.exchangeRateDate)
     props.setLoader(true)
   }

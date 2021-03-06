@@ -10,7 +10,7 @@ const About: React.FC = () => {
             <div className="card-header">Используемые технологии.</div>
             <div className="card-body">
               <p>React, React-router-dom,React Function Components, React hooks, React-Typescript.</p>
-              <p>Redux, Redux-form, Redux-thunk, React-redux.</p>
+              <p>Redux, Redux-form, Redux-Saga, React-redux.</p>
               <p>Bootstrap, React-bootstrap, Node-sass, CSS Flexbox.</p>
               <p>Axios.</p>
               <p>Exchange rates API: https://exchangeratesapi.io/</p>

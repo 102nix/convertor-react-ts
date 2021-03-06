@@ -1,11 +1,11 @@
 import React from 'react';
 import { Field, InjectedFormProps, reduxForm } from 'redux-form'
 import { FieldValue } from '../../FormControls/Input'
-import { FormHistoricalContainerProps, FormInData } from '../../types/componentTypes'
+import { FormHistoricalContainerType, HistoricalFormDataType } from '../../types/HistoricalRateTypes';
 import { required } from '../../Validators/validate'
 import './formHistoricalRates.scss'
 
-const FormHistoricalRates: React.FC<InjectedFormProps<FormInData, FormHistoricalContainerProps> & FormHistoricalContainerProps> = ({handleSubmit, ...props}) => {
+const FormHistoricalRates: React.FC<InjectedFormProps<HistoricalFormDataType, FormHistoricalContainerType> & FormHistoricalContainerType> = ({handleSubmit, ...props}) => {
   return (
     <div className="exchange-rate-date-content">
       <div className="title-historical-rate">Курс валюты по указанной дате, начиная с 1999 года:</div>
@@ -36,5 +36,5 @@ const FormHistoricalRates: React.FC<InjectedFormProps<FormInData, FormHistorical
     </div>
   )
 }
-const Form = reduxForm<FormInData, FormHistoricalContainerProps>({form: 'exchange-rate-date-content'})(FormHistoricalRates)
+const Form = reduxForm<HistoricalFormDataType, FormHistoricalContainerType>({form: 'exchange-rate-date-content'})(FormHistoricalRates)
 export default Form 

@@ -1,56 +1,70 @@
-import { 
-  CHANGE_COUNT_RUB, 
-  CURRENCY_LIST_BASE_RUB, 
-  GET_RATE, 
-  LIST_HISTORICAL_RATES, 
-  RESET_HISTORICAL_RATES, 
-  SET_CURRENT_RUB, 
-  GET_DYNAMIC_RATE_SAGA, 
-  SET_HISTORICAL_RATE_SAGA, 
-  SET_LOADER, 
-  SET_RATE_SAGA 
-} from "../redux/convertorReducer"
 import { IObject } from "./componentTypes"
 
+export enum ReducerConst {
+GET_RATE = 'GET_RATE',
+SET_CURRENT_RUB = 'SET_CURRENT_RUB',
+CHANGE_COUNT_RUB = 'CHANGE_COUNT_RUB',
+CURRENCY_LIST_BASE_RUB = 'CURRENCY_LIST_BASE_RUB',
+LIST_HISTORICAL_RATES = 'LIST_HISTORICAL_RATES',
+RESET_HISTORICAL_RATES = 'RESET_HISTORICAL_RATES',
+SET_LOADER = 'SET_LOADER',
+SET_RATE_SAGA = 'SET_RATE_SAGA',
+GET_DYNAMIC_RATE_SAGA = 'GET_DYNAMIC_RATE_SAGA', 
+SET_HISTORICAL_RATE_SAGA = 'SET_HISTORICAL_RATE_SAGA'
+}
+
+export type InitialStateType = {
+  dateFromAPIRequest: string
+  currencyUsdEurForRub: IObject
+  currencyList: IObject
+  baseCurrencyFromAPIRequest: string
+  currentRUB: number
+  startValueForInput: number 
+  countRUB: number
+  currencyListBaseRub: IObject
+  listHistoricalRates: null  | IObject
+  load: boolean
+}
+
 export type getRateType = {
-  type: typeof GET_RATE
+  type: typeof ReducerConst.GET_RATE
   dateFromAPIRequest: string
   currencyUsdEur: IObject
   currencyList: IObject
   baseCurrencyFromAPIRequest: any
 }
 export type SetCurrentRUBType = {
-  type: typeof SET_CURRENT_RUB
+  type: typeof ReducerConst.SET_CURRENT_RUB
   value: number 
 }
 export type ChangeCountRUBType = {
-  type: typeof CHANGE_COUNT_RUB
+  type: typeof ReducerConst.CHANGE_COUNT_RUB
   value: number 
 }
 export type SetCurrencyListBaseRubType = {
-  type: typeof CURRENCY_LIST_BASE_RUB
+  type: typeof ReducerConst.CURRENCY_LIST_BASE_RUB
   currencyListBaseRub: IObject
 }
 export type SetListHistoricalRatesType = {
-  type: typeof LIST_HISTORICAL_RATES
+  type: typeof ReducerConst.LIST_HISTORICAL_RATES
   listHistoricalRates: IObject
 }
 export type ResetHistoricalRatesType = {
-  type: typeof RESET_HISTORICAL_RATES
+  type: typeof ReducerConst.RESET_HISTORICAL_RATES
 }
 export type SetLoaderType = {
-  type: typeof SET_LOADER
+  type: typeof ReducerConst.SET_LOADER
   val: boolean
 }
 export type SetRateSagaType = {
-  type: typeof SET_RATE_SAGA
+  type: typeof ReducerConst.SET_RATE_SAGA
 }
 export type getDynamicRateSagaType = {
-  type: typeof GET_DYNAMIC_RATE_SAGA
+  type: typeof ReducerConst.GET_DYNAMIC_RATE_SAGA
   pateOfURL: string
 }
 export type SetHistoricalRateSagaType = {
-  type: typeof SET_HISTORICAL_RATE_SAGA
+  type: typeof ReducerConst.SET_HISTORICAL_RATE_SAGA
   valueHistoricalRate: string
 }
 export type ActionsType = getRateType | SetCurrentRUBType | ChangeCountRUBType | SetCurrencyListBaseRubType | SetListHistoricalRatesType | ResetHistoricalRatesType | SetLoaderType | getDynamicRateSagaType | SetHistoricalRateSagaType

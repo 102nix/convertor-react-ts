@@ -1,8 +1,8 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import { ConvertorAPI } from '../../api/api'
+import { ReducerConst } from '../../types/ACTypes'
 import { getDynamicRateAction } from '../../types/sagaInterfaces'
 import { setCurrentRUB } from '../convertorAC'
-import { GET_DYNAMIC_RATE_SAGA } from '../convertorReducer'
 
 function* fetchDynamicRate (action: getDynamicRateAction) {
   try {
@@ -14,5 +14,5 @@ function* fetchDynamicRate (action: getDynamicRateAction) {
 }
 
 export function* fetchDynamicRateWatcher () {
-  yield takeEvery (GET_DYNAMIC_RATE_SAGA, fetchDynamicRate)
+  yield takeEvery (ReducerConst.GET_DYNAMIC_RATE_SAGA, fetchDynamicRate)
 }

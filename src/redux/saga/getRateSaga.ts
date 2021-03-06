@@ -1,11 +1,11 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import { ConvertorAPI } from '../../api/api'
 import { setRate, setCurrencyListBaseRub } from '../convertorAC'
-import { SET_RATE_SAGA } from '../convertorReducer'
 import { Action } from 'redux'
+import { ReducerConst } from '../../types/ACTypes'
 
 
-function* fetchRate (action: Action) {
+function* fetchRate (action: Action) { 
   try {
     const responseUsd          = yield call(ConvertorAPI.getRateUsd)
     const responseEur          = yield call(ConvertorAPI.getRateEur)
@@ -24,5 +24,5 @@ function* fetchRate (action: Action) {
 }
 
 export function* fetchRateWatcher () {
-  yield takeEvery (SET_RATE_SAGA, fetchRate)
+  yield takeEvery (ReducerConst.SET_RATE_SAGA, fetchRate)
 }

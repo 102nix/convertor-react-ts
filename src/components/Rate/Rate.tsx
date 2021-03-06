@@ -8,9 +8,9 @@ import Calc from '../Calc/Calc'
 import TableCurrency from '../TableCurrency/TableCurrency'
 //types:
 import { AppStateType } from '../../redux/store'
-import { RateDispatchPropsType, RateStatePropsType } from '../../types/componentTypes'
+import { RateTypes, RateStatePropsType } from '../../types/RateTypes'
 
-const Rate: React.FC<RateStatePropsType & RateDispatchPropsType> = props => {
+const Rate: React.FC<RateTypes> = props => {
 
   const htmlEntities = new Html5Entities() 
 

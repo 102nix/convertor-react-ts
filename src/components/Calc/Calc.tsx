@@ -4,9 +4,9 @@ import { getDynamicRateSaga, changeCountRUB } from '../../redux/convertorAC'
 import './Calc.scss'
 //types: 
 import { AppStateType } from '../../redux/store'
-import { CalcDispachPropsType, CalcStatePropsType } from '../../types/componentTypes'
+import { CalcTypes, CalcStatePropsType } from '../../types/CalcTypes'
 
-const Calc: React.FC<CalcStatePropsType & CalcDispachPropsType> = props => {
+const Calc: React.FC<CalcTypes> = props => {
 
   // let inputRef = React.createRef<HTMLInputElement>()
   let inputRef = useRef<HTMLInputElement>(null)

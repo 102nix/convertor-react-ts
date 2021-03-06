@@ -1,8 +1,8 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import { ConvertorAPI } from '../../api/api'
+import { ReducerConst } from '../../types/ACTypes'
 import { getHistoricalRateAction } from '../../types/sagaInterfaces'
 import { SetListHistoricalRates, setLoader } from '../convertorAC'
-import { SET_HISTORICAL_RATE_SAGA } from '../convertorReducer'
 
 function* fetchHistoricalRate (action: getHistoricalRateAction) { 
   try {
@@ -15,5 +15,5 @@ function* fetchHistoricalRate (action: getHistoricalRateAction) {
 }
 
 export function* fetchHistoricalRateWatcher () {
-  yield takeEvery (SET_HISTORICAL_RATE_SAGA, fetchHistoricalRate)
+  yield takeEvery (ReducerConst.SET_HISTORICAL_RATE_SAGA, fetchHistoricalRate)
 }
