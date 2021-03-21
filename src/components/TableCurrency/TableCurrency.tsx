@@ -3,7 +3,7 @@ import './TableCurrency.scss';
 //types:
 import { TableCurrencyContainerPropsType } from '../../types/componentTypes';
 
-const TableCurrency: React.FC<TableCurrencyContainerPropsType> = props => {
+export const TableCurrency: React.FC<TableCurrencyContainerPropsType> = props => {
   
   const arrayCurrencyValue: {[key: string]: string} = {
      'CAD': 'Канадский доллар',
@@ -71,4 +71,3 @@ const TableCurrency: React.FC<TableCurrencyContainerPropsType> = props => {
       </div>
   )
 }
-export default TableCurrency 

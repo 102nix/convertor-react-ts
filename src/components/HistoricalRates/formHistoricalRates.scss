@@ -1,10 +1,11 @@
-.historical-rate-base{
-  padding: 3px 10px;
-}
+// .historical-rate-base{
+//   padding: 3px 10px;
+// }
 .title-historical-rate{
   font-weight: bold;
 }
 .exchange-rate-date-content{
+  padding: 3px 10px;
   margin-top: 10px;
   display: flex;
   flex-direction: column;
@@ -14,15 +15,15 @@
   position: relative;
 }
 .exchange-rate-date-content .from-group .form-control{
-  padding: 0 0 0 5px;
-  margin: 10px 0;
+  // padding: 0 0 0 5px;
+  margin: 10px ;
   transform: scale(1);
   transition: all .4s;
   background-color: rgb(214, 214, 206);
   border: 0;
   border-bottom: 1px solid #000;
   border-radius: 0;
-  font-size: 14px;
+  font-size: 13px;
   width: 250px;
   &:focus{
     transform: scale(1.1);
@@ -35,20 +36,23 @@
 .add-action .btn{
   position: absolute;
   padding: 10px 20px;
-  top: 7px;
-  left: 240px;
+  top: 27px;
+  left: 250px;
   font-size: 35px;
   transition: all ease-out .1s;
   &:hover{
     transition: all ease-in .1s;
     font-size: 38px;
-    top: 2px;
+    top: 26px;
   }
 }
 .loader{
   margin: 20px auto;
   display: flex;
   justify-content: center;
+}
+.exit-historical{
+  margin-bottom: 15px;
 }
 
 

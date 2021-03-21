@@ -24,6 +24,7 @@ export type InitialStateType = {
   currencyListBaseRub: IObject
   listHistoricalRates: null  | IObject
   load: boolean
+  historicalValue: string
 }
 
 export type getRateType = {
@@ -67,4 +68,4 @@ export type SetHistoricalRateSagaType = {
   type: ReducerConst.SET_HISTORICAL_RATE_SAGA
   valueHistoricalRate: string
 }
-export type ActionsType = getRateType | SetCurrentRUBType | ChangeCountRUBType | SetCurrencyListBaseRubType | SetListHistoricalRatesType | ResetHistoricalRatesType | SetLoaderType | getDynamicRateSagaType | SetHistoricalRateSagaType
+export type ActionsType = getRateType | SetCurrentRUBType | ChangeCountRUBType | SetCurrencyListBaseRubType | SetListHistoricalRatesType | ResetHistoricalRatesType | SetLoaderType | getDynamicRateSagaType | SetHistoricalRateSagaType 

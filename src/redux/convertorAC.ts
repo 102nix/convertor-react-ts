@@ -9,7 +9,7 @@ import {
   SetLoaderType, 
   SetRateSagaType, 
   SetHistoricalRateSagaType,
-  ReducerConst} from "../types/ACTypes"
+  ReducerConst } from "../types/ACTypes"
 import { IObject } from "../types/componentTypes"
 
 

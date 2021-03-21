@@ -10,7 +10,8 @@ let initialState: InitialStateType = {
   countRUB: 0,
   currencyListBaseRub: {},
   listHistoricalRates: null,
-  load: false
+  historicalValue: '',
+  load: false,
 }
 
 

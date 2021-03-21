@@ -1,32 +1,37 @@
 import React, { useEffect, useRef } from 'react' 
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getDynamicRateSaga, changeCountRUB } from '../../redux/convertorAC'
 import './Calc.scss'
 //types: 
 import { AppStateType } from '../../redux/store'
-import { CalcTypes, CalcStatePropsType } from '../../types/CalcTypes'
 
-const Calc: React.FC<CalcTypes> = props => {
+export const Calc: React.FC = () => {
+
+  const dispatch = useDispatch()
+  const currencyList = useSelector((state: AppStateType) => state.convertorReducer.currencyList)
+  const currentRUB =  useSelector((state: AppStateType) => state.convertorReducer.currentRUB)
+  const startValueForInput = useSelector((state: AppStateType) => state.convertorReducer.startValueForInput)
+  const countRUB = useSelector((state: AppStateType) => state.convertorReducer.countRUB)
 
   // let inputRef = React.createRef<HTMLInputElement>()
   let inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    props.getDynamicRateSaga(Object.keys(props.currencyList)[0])
-  },[props.currencyList])
+    dispatch(getDynamicRateSaga(Object.keys(currencyList)[0]))
+  },[currencyList])
 
   const handlerInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.value) {
-      const resultExchangeRate: number = +event.target.value * +props.currentRUB
-      props.changeCountRUB(resultExchangeRate)
+      const resultExchangeRate: number = +event.target.value * +currentRUB
+      dispatch(changeCountRUB(resultExchangeRate))
     }
   }
 
   const handlerSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    props.changeCountRUB(0)
+    dispatch(changeCountRUB(0))
     inputRef.current!.value = '1'
     console.log(inputRef.current?.value)
-    props.getDynamicRateSaga(event.target.value)
+    dispatch(getDynamicRateSaga(event.target.value))
   }
 
   return (
@@ -37,31 +42,22 @@ const Calc: React.FC<CalcTypes> = props => {
             type="number" 
             className="input"
             ref={inputRef}          
-            defaultValue={props.startValueForInput}
+            defaultValue={startValueForInput}
             onChange={handlerInput} 
           />
           <select onChange={handlerSelect}>
             { 
-              Object.keys(props.currencyList)
+              Object.keys(currencyList)
                 .filter(key => key !== 'RUB')
                   .map(option => <option value={option} key={option}>{option}</option>)
             }
           </select>
         </div>
         <div className="show-rub">
-          В Рублях: <strong>{props.countRUB === 0 ? props.currentRUB.toFixed(2) : props.countRUB.toFixed(2)}</strong>
+          В Рублях: <strong>{countRUB === 0 ? currentRUB.toFixed(2) : countRUB.toFixed(2)}</strong>
         </div>
       </div>
     </div>
   )
 }
-let mapStateToProps = (state: AppStateType): CalcStatePropsType => {
-  return {
-    currencyList: state.convertorReducer.currencyList,
-    currentRUB: state.convertorReducer.currentRUB,
-    startValueForInput: state.convertorReducer.startValueForInput,
-    countRUB: state.convertorReducer.countRUB
-  }
-}
-const connector = connect(mapStateToProps, { getDynamicRateSaga, changeCountRUB })
-export default connector(Calc)
+

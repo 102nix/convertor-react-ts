@@ -1,34 +1,38 @@
 import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Html5Entities } from 'html-entities'
 import './Rate.scss'
 import { setRateSaga } from '../../redux/convertorAC'
 //components:
-import Calc from '../Calc/Calc'
-import TableCurrency from '../TableCurrency/TableCurrency'
+import { Calc } from '../Calc/Calc'
+import { TableCurrency } from '../TableCurrency/TableCurrency'
 //types:
 import { AppStateType } from '../../redux/store'
-import { RateTypes, RateStatePropsType } from '../../types/RateTypes'
 
-const Rate: React.FC<RateTypes> = props => {
+export const Rate: React.FC = () => {
 
   const htmlEntities = new Html5Entities() 
 
+  const dispatch = useDispatch()
+  const dateFromAPIRequest = useSelector((state: AppStateType) => state.convertorReducer.dateFromAPIRequest)
+  const currencyUsdEurForRub = useSelector((state: AppStateType) => state.convertorReducer.currencyUsdEurForRub)
+  const currencyListBaseRub = useSelector((state: AppStateType) => state.convertorReducer.currencyListBaseRub)
+  
   useEffect(() => {
-    props.setRateSaga()
+    dispatch(setRateSaga())
   }, [])
 
   return (
     <div className="rate">
       <div className="row">
         <div className="col-12 title">
-          Курс валют на {props.dateFromAPIRequest}
+          Курс валют на {dateFromAPIRequest}
         </div>
       </div>
       <div className="row">
         {
-          props.dateFromAPIRequest !== '' &&
-          Object.keys(props.currencyUsdEurForRub).map(keyName => {
+          dateFromAPIRequest !== '' &&
+          Object.keys(currencyUsdEurForRub).map(keyName => {
             return (
               <div className="col-12 col-lg-6">
                 <div className="card card-flip h-100">
@@ -36,7 +40,7 @@ const Rate: React.FC<RateTypes> = props => {
                     <div className="card-body">
                         <i className="fa fa-search fa-5x float-right"></i>
                         <h3 className="card-title">{htmlEntities.decode(keyName)}</h3>
-                        <div className="card-text">{props.currencyUsdEurForRub[keyName].toFixed(2)}</div>
+                        <div className="card-text">{currencyUsdEurForRub[keyName].toFixed(2)}</div>
                     </div>
                   </div>
                   <div className="card-back bg-dark text-white">
@@ -59,7 +63,7 @@ const Rate: React.FC<RateTypes> = props => {
       </div>
       <div className="row">
         {
-          Object.keys(props.currencyUsdEurForRub).length === 0 &&
+          Object.keys(currencyUsdEurForRub).length === 0 &&
           <div className="col-12">
             <div className="spinner-border" role="status">
               <span className="sr-only">Loading...</span>
@@ -67,19 +71,10 @@ const Rate: React.FC<RateTypes> = props => {
           </div>
         }
         <div className="col-12 title">Курсы валют Европейского Центрального банка</div>
-        <TableCurrency currencyListBaseRub={props.currencyListBaseRub} />
+          <TableCurrency currencyListBaseRub={currencyListBaseRub} />
       </div>
     </div>
   )
 }
-let mapStateToProps = (state: AppStateType): RateStatePropsType => {
-  return {
-    dateFromAPIRequest: state.convertorReducer.dateFromAPIRequest,
-    currencyUsdEurForRub: state.convertorReducer.currencyUsdEurForRub,
-    baseCurrencyFromAPIRequest: state.convertorReducer.baseCurrencyFromAPIRequest,
-    currencyListBaseRub: state.convertorReducer.currencyListBaseRub
-  }
-}
 
-const connector = connect(mapStateToProps, { setRateSaga })
-export default connector(Rate)
+
