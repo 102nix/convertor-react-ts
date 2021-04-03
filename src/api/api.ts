@@ -1,9 +1,10 @@
 import axios from 'axios';
 
-const API_URL = 'https://api.exchangeratesapi.io/latest?base=KRW'
-const API_URL_RUB = 'https://api.exchangeratesapi.io/latest?base=RUB&symbols=AUD,GBP,USD,EUR,CAD,TRY,JPY,CHF,BRL,INR,SEK,SGD,CZK'
-const API_URL_USD = 'https://api.exchangeratesapi.io/latest?base=USD'
-const API_URL_EUR = 'https://api.exchangeratesapi.io/latest?base=EUR'
+const API_KEY = 'de1bd33d355507d1a214294c9c00d732'
+const API_URL = `http://api.exchangeratesapi.io/v1/latest?access_key=de1bd33d355507d1a214294c9c00d732&format=1`
+const API_URL_RUB = 'http://api.exchangeratesapi.io/v1/latest?access_key=de1bd33d355507d1a214294c9c00d732&format=1&symbols=AUD,GBP,USD,EUR,CAD,TRY,JPY,CHF,BRL,INR,SEK,SGD,CZK'
+const API_URL_USD = 'http://api.exchangeratesapi.io/v1/latest?access_key=de1bd33d355507d1a214294c9c00d732&format=1'
+const API_URL_EUR = 'http://api.exchangeratesapi.io/v1/latest?access_key=de1bd33d355507d1a214294c9c00d732&format=1&base=EUR'
 
 export const ConvertorAPI = {
   getRate () {
@@ -19,10 +20,10 @@ export const ConvertorAPI = {
     return axios.get<any>(API_URL_EUR)
   },
   getDynamicsRate(patOfURL: string) {
-    return axios.get<any>(`https://api.exchangeratesapi.io/latest?base=${patOfURL}`)
+    return axios.get<any>(`http://api.exchangeratesapi.io/v1/latest?access_key=de1bd33d355507d1a214294c9c00d732&format=1`)
   },
   getHistoricalRate(valueHistoricalRate: string) {
-    return axios.get<any>(`https://api.exchangeratesapi.io/${valueHistoricalRate}?base=RUB`)
+    return axios.get<any>(`https://api.exchangeratesapi.io/${valueHistoricalRate}`)
   }
 }
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react' 
 import { useDispatch, useSelector } from 'react-redux'
-import { getDynamicRateSaga, changeCountRUB } from '../../redux/convertorAC'
+import { actions } from '../../redux/convertorAC'
 import './Calc.scss'
 //types: 
 import { AppStateType } from '../../redux/store'
@@ -17,21 +17,21 @@ export const Calc: React.FC = () => {
   let inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    dispatch(getDynamicRateSaga(Object.keys(currencyList)[0]))
+    dispatch(actions.getDynamicRateSaga(Object.keys(currencyList)[0]))
   },[currencyList])
 
   const handlerInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.value) {
       const resultExchangeRate: number = +event.target.value * +currentRUB
-      dispatch(changeCountRUB(resultExchangeRate))
+      dispatch(actions.changeCountRUB(resultExchangeRate))
     }
   }
 
   const handlerSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch(changeCountRUB(0))
+    dispatch(actions.changeCountRUB(0))
     inputRef.current!.value = '1'
     console.log(inputRef.current?.value)
-    dispatch(getDynamicRateSaga(event.target.value))
+    dispatch(actions.getDynamicRateSaga(event.target.value))
   }
 
   return (

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Html5Entities } from 'html-entities'
 import './Rate.scss'
-import { setRateSaga } from '../../redux/convertorAC'
+import { actions } from '../../redux/convertorAC'
 //components:
 import { Calc } from '../Calc/Calc'
 import { TableCurrency } from '../TableCurrency/TableCurrency'
@@ -12,16 +12,16 @@ import { AppStateType } from '../../redux/store'
 export const Rate: React.FC = () => {
 
   const htmlEntities = new Html5Entities() 
+  
+  useEffect(() => {
+    dispatch(actions.setRateSaga())
+  }, [])
 
   const dispatch = useDispatch()
   const dateFromAPIRequest = useSelector((state: AppStateType) => state.convertorReducer.dateFromAPIRequest)
   const currencyUsdEurForRub = useSelector((state: AppStateType) => state.convertorReducer.currencyUsdEurForRub)
   const currencyListBaseRub = useSelector((state: AppStateType) => state.convertorReducer.currencyListBaseRub)
   
-  useEffect(() => {
-    dispatch(setRateSaga())
-  }, [])
-
   return (
     <div className="rate">
       <div className="row">

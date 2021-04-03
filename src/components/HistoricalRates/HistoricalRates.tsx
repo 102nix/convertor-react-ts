@@ -5,7 +5,7 @@ import './formHistoricalRates.scss'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 //components:
-import { setHistoricalRateSaga, resetHistoricalRates, setLoader } from '../../redux/convertorAC'
+import { actions } from '../../redux/convertorAC'
 //components:
 import { TableCurrency } from '../TableCurrency/TableCurrency'
 //types: 
@@ -18,8 +18,8 @@ export const HistoricalRates: React.FC = () => {
   const dispatch = useDispatch() 
 
   useEffect(() => {
-    dispatch(setLoader(false))
-    dispatch(resetHistoricalRates())  
+    dispatch(actions.setLoader(false))
+    dispatch(actions.resetHistoricalRates())  
   }, [])
 
   const listHistoricalRates = useSelector(((state: AppStateType) => state.convertorReducer.listHistoricalRates))
@@ -30,7 +30,7 @@ export const HistoricalRates: React.FC = () => {
   const minDate = '1999-01-01'
 
   const goMainPageHandler = () => {
-    dispatch(resetHistoricalRates())
+    dispatch(actions.resetHistoricalRates())
     history.push('/')
   }
       
@@ -55,8 +55,8 @@ export const HistoricalRates: React.FC = () => {
             })}
             onSubmit={
               (dataForm: HistoricalFormDataType): void => {
-                dispatch(setHistoricalRateSaga(dataForm.exchangeRateDate))
-                dispatch(setLoader(true))
+                dispatch(actions.setHistoricalRateSaga(dataForm.exchangeRateDate))
+                dispatch(actions.setLoader(true))
               }
             }
           >
